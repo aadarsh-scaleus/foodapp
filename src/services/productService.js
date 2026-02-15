@@ -36,6 +36,7 @@ export const getAllProducts = async (filters = {}) => {
 
 
 export const getProductById = async (id) => {
+  console.log("id" , id)
   try {
     const response = await fetch(`${API_BASE_URL}/products/${id}`);
     const data = await response.json();
