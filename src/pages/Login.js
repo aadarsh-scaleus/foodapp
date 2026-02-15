@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const endpoint = isSignUp ? "http://localhost:5000/api/auth/register" : "http://localhost:5000/api/auth/login";
+    const endpoint = isSignUp ? "https://foodapp-backend-hwid.onrender.com/api/auth/register" : "https://foodapp-backend-hwid.onrender.com/api/auth/login";
     const data = await fetch(endpoint,{
      method:"POST",
      headers:{
