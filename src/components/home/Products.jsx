@@ -10,7 +10,8 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
-  }, [products]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const fetchProducts = async () => {
     try {

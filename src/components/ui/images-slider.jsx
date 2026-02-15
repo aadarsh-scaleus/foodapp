@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "../../lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const ImagesSlider = ({
   images,
@@ -13,7 +13,6 @@ export const ImagesSlider = ({
   direction = "up",
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState([]);
 
   const handleNext = () => {
@@ -28,12 +27,7 @@ export const ImagesSlider = ({
     );
   };
 
-  useEffect(() => {
-    loadImages();
-  }, [images]);
-
-  const loadImages = () => {
-    setLoading(true);
+  const loadImages = useCallback(() => {
     const loadPromises = images.map((image) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -46,10 +40,13 @@ export const ImagesSlider = ({
     Promise.all(loadPromises)
       .then((loadedImages) => {
         setLoadedImages(loadedImages);
-        setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
-  };
+  }, [images]);
+
+  useEffect(() => {
+    loadImages();
+  }, [loadImages]);
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowRight") {
@@ -73,6 +70,7 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       clearInterval(interval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const slideVariants = {
