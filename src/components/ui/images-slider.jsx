@@ -30,7 +30,7 @@ export const ImagesSlider = ({
 
   useEffect(() => {
     loadImages();
-  }, []);
+  }, [images]);
 
   const loadImages = () => {
     setLoading(true);

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layout/Header';
+
 import { Hero } from '../components/home/Hero';
 import Products from '../components/home/Products';
 
