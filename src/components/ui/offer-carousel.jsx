@@ -54,7 +54,6 @@ const OfferCard = React.forwardRef(({ offer }, ref) => (
 OfferCard.displayName = "OfferCard";
 
 
-/
 const OfferCarousel = React.forwardRef(
   ({ offers, className, ...props }, ref) => {
     const scrollContainerRef = React.useRef(null);
